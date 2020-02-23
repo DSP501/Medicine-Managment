@@ -60,7 +60,8 @@ void bye();
   	
   	while(strcmp(p->id,idd)!=0)
   	p=p->next;
-  
+
+  	
   	return p;
   }
 
@@ -84,7 +85,8 @@ void bye();
 	}
     
   	cust c;
-
+  
+  	
   	char idd[6];
     char ch;  	
   	node *p,*temp;
@@ -138,6 +140,10 @@ void bye();
 	
 	c.total = c.quant * temp->sp;
    
+    
+   
+    
+  	
   	gotoxy(20,25);
   	printf("CONFIRM YOUR TRANSACTION  y YES  or  n NO");
   	gotoxy(20,26);
@@ -147,8 +153,8 @@ void bye();
   	
   	if(ch == 'y' || ch == 'Y')
   	{
-  			
-  	
+  		
+  
   		FILE *fp,*fp2;
   		fp = fopen("SALES.txt","a");
   		fp2 = fopen("SALES.dat","w");
@@ -162,12 +168,13 @@ void bye();
 			time_t tm = time(NULL);
 			time(&tm);
 			fprintf(fp,"\n\n\n\n\t\t\t\t%s\n\n",ctime(&tm));
-		
-		    fprintf(fp,"ID\t\tBILL_NO\t\tCUSTOMER_NAME\t\tMEDICINE\t\tQUANTITY\t\tTOTOAL\n");
-		    fprintf(fp,"%s\t\t\t%s\t\t\t%s\t\t\t%s\t\t\t%d\t\t\t%f\n",c.id,c.bill_no,c.customer,temp->medi_name,c.quant,c.total);  
-			fprintf(fp,"------------------------------------------------\n\n");
-			
 	
+		     fprintf(fp,"ID\t\tBILL_NO\t\tCUSTOMER_NAME\t\tMEDICINE\t\tQUANTITY\t\tTOTOAL\n");
+		     //fprintf(fp,"%s\t\t\t%s\t\t\t%s\t\t\t%s\t\t\t%d\t\t\t%f\n",c.id,c.bill_no,c.customer,temp->medi_name,c.quant,c.total);  
+		     fprintf(fp,"%s\t\t%s\t\t%s\t\t\t%s\t\t\t%d\t\t\t%f\n",c.id,c.bill_no,c.customer,temp->medi_name,c.quant,c.total); 
+			 fprintf(fp,"\n------------------------------------------------\n\n");
+			
+
 		     p=m->start;
 			 while(p!=NULL) 
 		     {
@@ -183,8 +190,13 @@ void bye();
 		}
 	}
 	
+	
+  	
+  
   	getch();
   	main_box(m);
+  	
+  	
   	
   }
 
@@ -204,7 +216,7 @@ void display2(MEDICINE *m)
   	{
   	   gotoxy(125,15);
 	   printf("NO MEDICINE FOUND");	
-	   //return;
+	   
 	}
 	
 	else
@@ -244,17 +256,24 @@ void display2(MEDICINE *m)
 			p=p->next;
 			
 		}
-			
+		
+		
+		
+		
 	}
-	 	
+	 
+
+	 
+	
 }
+
 
 
   void display(MEDICINE *m)
   {
   	system("cls");
   	system("COLOR  2F");
-  	//box_table();
+  	
   	box();
   	
   	gotoxy(35,3);
@@ -268,7 +287,7 @@ void display2(MEDICINE *m)
   	{
   	   gotoxy(25,15);
 	   printf("NO MEDICINE FOUND");	
-	   //return;
+	   
 	}
 	
 	else
@@ -307,14 +326,15 @@ void display2(MEDICINE *m)
 			i=i+2;
 			p=p->next;
 			
-		}	
+		}
+		
 		
 	}
 	 getch();
 	 main_box(m);
-
+	
   }
-
+ 
 
     void EnterMed(MEDICINE *m)
    {   
@@ -329,7 +349,7 @@ void display2(MEDICINE *m)
 			
         
         while(1) {
-		
+        
 	    node *newrec,*p;
     	newrec = (node*)malloc(sizeof(node));
 		
@@ -340,7 +360,7 @@ void display2(MEDICINE *m)
          gotoxy(35,3);
          printf("MEDICINE ENTRY");
         
-    	
+       
         box();
     	
     	fflush(stdin);
@@ -525,8 +545,7 @@ void box2()
 	
 	 system("COLOR F0");
 	 box();
-	 // SetConsoleTitle("MEDICAL MANAGMENT SYSTEM");
-	 //  SMALL_RECT windowSize = {0, 0, 90, 100};
+	 
 	 gotoxy(35,3);
 	 printf("WELCOME SIR!");
 	  
@@ -562,8 +581,6 @@ void box2()
 	
 	}
 	
-	
-	
 
 }
 
@@ -576,11 +593,11 @@ int  animation(int x)
 	{
 		Sleep(30);
 		gotoxy(7,i);
-		//clreol();
+	
 	}
 	for (i=7; i<=x; i++)
 	{
-		//clreol();
+		
 		Sleep(40);
 		gotoxy(7,i);
 	}
@@ -591,15 +608,14 @@ void bye()
 	system("cls");
 	box();
 	gotoxy(35,15);
-    printf("THANK YOU!");
-    gotoxy(35,21);
-   
-    gotoxy(60,27);
+    printf("THANK YOU");
+  
     printf("DEVELOPER");
-    gotoxy(60,29);
+    gotoxy(62,29);
     printf("DHRUVESH PANCHAL");
-}
     
+    Sleep(3000);
+}
 
 void getData(MEDICINE *m)
 {
@@ -617,8 +633,9 @@ void getData(MEDICINE *m)
     		
     	 node *newrec,*p;
          newrec = (node*)malloc(sizeof(node));
-         fscanf(fp,"%s%s%s%s%s%s%f%f%f%d",&newrec->comp_name , &newrec->id , &newrec->medi_name,&newrec->exp_date,&newrec->manu_date,&newrec->pur_date,&newrec->cost,&newrec->sp,&newrec->profit,&newrec->quantity);
-         
+         // fscanf(fp,"%[^\n]");
+         fscanf(fp,"%s%s%s%s%s%s%f%f%f%d",&newrec->comp_name , &newrec->id , &newrec->medi_name,&newrec->exp_date,&newrec->manu_date,&newrec->pur_date,&newrec->cost,&newrec->sp,&newrec->profit,&newrec->quantity );
+        // fscanf(fp,"%[^\n]");
             if(m->start==NULL)
            {
             	m->start=newrec;
@@ -639,10 +656,9 @@ void getData(MEDICINE *m)
     		newrec->prev=p;
     	
 		}
-	    	
-	    	
+	
          
-		}
+	}
 		
 		fclose(fp);
 }
@@ -654,11 +670,6 @@ int main()
 	 getData(&m);
      main_box(&m);
      bye();
-    
-    
-	 
-	 
-	 
-
+ 
 }
 
