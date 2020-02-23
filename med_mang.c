@@ -60,10 +60,7 @@ void bye();
   	
   	while(strcmp(p->id,idd)!=0)
   	p=p->next;
-  	
-  //	if(strcmp(p->id,idd) != 0 )
-  //	return NULL;
-  	
+  
   	return p;
   }
 
@@ -87,9 +84,7 @@ void bye();
 	}
     
   	cust c;
-  	//cust *c;
-  	//c = (cust*)malloc(sizeof(cust));
-  	
+
   	char idd[6];
     char ch;  	
   	node *p,*temp;
@@ -108,23 +103,14 @@ void bye();
   	
   	gotoxy(7,11);
   	printf("Medicine Id :");
-  	//MessageBox(0,"ENTER COORECT ID","CAUTION",0);
+  
   	gotoxy(28,11);fflush(stdin);
   	gets(idd);
   	strcpy(c.id,idd);
   	
   	temp=search(m,idd); 
-  	//c.medname =temp->medi_name;
-  	
-  	/*if(temp == NULL)
-  	{
-  		MessageBox(0,"ID DOES NOT EXSISTS...","ERROR",0);
-  		getch();
-  		main_box(m);
-	}*/
   	
   	
-  	// -----------------------------------------------------------------
   	gotoxy(7,13);
   	printf("Med-Name :");
   	gotoxy(28,13);
@@ -152,10 +138,6 @@ void bye();
 	
 	c.total = c.quant * temp->sp;
    
-    
-   
-    
-  	
   	gotoxy(20,25);
   	printf("CONFIRM YOUR TRANSACTION  y YES  or  n NO");
   	gotoxy(20,26);
@@ -165,8 +147,8 @@ void bye();
   	
   	if(ch == 'y' || ch == 'Y')
   	{
-  			//
-  	//	temp->quantity -=  c->quant;
+  			
+  	
   		FILE *fp,*fp2;
   		fp = fopen("SALES.txt","a");
   		fp2 = fopen("SALES.dat","w");
@@ -180,14 +162,12 @@ void bye();
 			time_t tm = time(NULL);
 			time(&tm);
 			fprintf(fp,"\n\n\n\n\t\t\t\t%s\n\n",ctime(&tm));
-		//	fwrite(&c,sizeof(cust),1,fp);
-		  //  fwrite(fp,"\tBILL_NO\t\tNAME\t\tMED_NAME\t\tQUANTITY\t\tTOTAL");
-		  //  fwrite()
-		     fprintf(fp,"ID\t\tBILL_NO\t\tCUSTOMER_NAME\t\tMEDICINE\t\tQUANTITY\t\tTOTOAL\n");
-		     fprintf(fp,"%s\t\t\t%s\t\t\t%s\t\t\t%s\t\t\t%d\t\t\t%f\n",c.id,c.bill_no,c.customer,temp->medi_name,c.quant,c.total);  
+		
+		    fprintf(fp,"ID\t\tBILL_NO\t\tCUSTOMER_NAME\t\tMEDICINE\t\tQUANTITY\t\tTOTOAL\n");
+		    fprintf(fp,"%s\t\t\t%s\t\t\t%s\t\t\t%s\t\t\t%d\t\t\t%f\n",c.id,c.bill_no,c.customer,temp->medi_name,c.quant,c.total);  
 			fprintf(fp,"------------------------------------------------\n\n");
 			
-		//	fprintf(fp2,"%s\t\t\t%s\t\t\t%s\t\t\t%s\t\t\t%d\t\t\t%f\n",c.id,c.bill_no,c.customer,temp->medi_name,c.quant,c.total);
+	
 		     p=m->start;
 			 while(p!=NULL) 
 		     {
@@ -203,13 +183,8 @@ void bye();
 		}
 	}
 	
-	
-  	
-  
   	getch();
   	main_box(m);
-  	
-  	
   	
   }
 
@@ -269,24 +244,10 @@ void display2(MEDICINE *m)
 			p=p->next;
 			
 		}
-		
-		
-		
-		
+			
 	}
-	 
-
-	 
-	
+	 	
 }
-
-
-
-
-
-
-
-
 
 
   void display(MEDICINE *m)
@@ -346,46 +307,13 @@ void display2(MEDICINE *m)
 			i=i+2;
 			p=p->next;
 			
-		}
-		
-		
-		
+		}	
 		
 	}
 	 getch();
 	 main_box(m);
 
-	 
-	
-	
   }
- 
-/*void box_table()
-{
-     int i,j;
-     for(i=5;i<=120;i++)
-     {
-        gotoxy(i,5);
-        printf("%c",205);
-       
-        gotoxy(i,35);
-       printf("%c",205);
-       
-	 }
-	 
-	 for(i=5;i<=35;i++)
-	 {
-	 	gotoxy(5,i);
-       	printf("%c",186);
-        gotoxy(120,i);
-        printf("%c",186);
-	 }
-	
-}*/
-
-
-
-
 
 
     void EnterMed(MEDICINE *m)
@@ -401,39 +329,6 @@ void display2(MEDICINE *m)
 			
         
         while(1) {
-        	
-       
-    	
-    /*	while(feof(fp))
-    	{
-    	 node *newrec,*p;
-         newrec = (node*)malloc(sizeof(node));
-         fscanf(fp,"%s%s%s%s%s%s%f%f%f%d",&newrec->comp_name , &newrec->id , &newrec->medi_name,&newrec->exp_date,&newrec->manu_date,&newrec->pur_date,&newrec->cost,&newrec->sp,&newrec->profit,&newrec->quantity);
-         
-            if(m->start==NULL)
-           {
-            	m->start=newrec;
-        
-            	newrec->next=NULL;
-        	    newrec->prev=NULL;
-        
-	       }
-	       
-	       else
-    	{
-    		p=m->start;
-    		while(p->next!=NULL)
-    		p=p->next;
-    		
-    		p->next=newrec;
-    		newrec->next=NULL;
-    		newrec->prev=p;
-    	
-		}
-	    	
-	    	
-         
-		}*/
 		
 	    node *newrec,*p;
     	newrec = (node*)malloc(sizeof(node));
@@ -445,8 +340,6 @@ void display2(MEDICINE *m)
          gotoxy(35,3);
          printf("MEDICINE ENTRY");
         
-       
-		
     	
         box();
     	
